@@ -1,2 +1,2 @@
 # Jogo-Dinossauro
-Jogo em Javascript, HTML e CSS
+Jogo desenvolvido em Javascript, HTML e CSS.
