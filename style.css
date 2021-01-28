@@ -6,7 +6,8 @@ body{
 .dino{
     width: 60px;
     height: 60px;
-    background-image: url(dino.png);
+    background-image: url(dino2.gif);
+    transform: scaleX(-1);
     position: absolute;
     bottom: 0;
 }
