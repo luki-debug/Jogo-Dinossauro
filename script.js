@@ -5,14 +5,13 @@ var textScore = document.querySelector('.score');
 let isJumping = false;
 let position = 0;
 let score = 0;
-textScore.innerHTML = '<h2>Score: '+score+'</h2>';
+
+updateScore();
 
 function handleKeyUp(event){
     if(event.keyCode == 32){
         if(!isJumping){
-            jump();
-            score += 100;
-            textScore.innerHTML = '<h2>Score: '+score+'</h2>';
+            jump();                      
         }
     }
 }
@@ -32,7 +31,7 @@ function jump(){
                 dino.style.bottom = position + 'px';
                 }else{
                     clearInterval(dowInterval);
-                    isJumping = false;
+                    isJumping = false;    
                 }
             },20);
         }else{            
@@ -54,9 +53,10 @@ function createCactus(){
     background.appendChild(cactus);
 
     let leftInterval =  setInterval( () =>{
-        if(cactusPosition < -60){
+        if(cactusPosition < 0){
             clearInterval(leftInterval);
-            background.removeChild(cactus)
+            background.removeChild(cactus);
+            score += 100;
         }else if(cactusPosition > 0 && cactusPosition < 60 && position < 60){
             //Game over
             clearInterval(leftInterval);
@@ -71,6 +71,11 @@ function createCactus(){
     },20);
 
     setTimeout(createCactus, randomTime);
+}
+
+function updateScore(){
+    textScore.innerHTML = '<h2 class="score">Score: '+score+'</h2>';
+    setTimeout(updateScore, 100);
 }
 
 createCactus();
