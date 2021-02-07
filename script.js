@@ -1,11 +1,14 @@
 const dino = document.querySelector('.dino');
 const background = document.querySelector('.background');
-var textScore = document.querySelector('.score');  
-
+var textScore = document.querySelector('.score');
+//const audio = document.querySelector('.audioThema');
+var isSound = false;
+  
 let isJumping = false;
-let position = 0;
+let position = 110;
 let score = 0;
 
+//audio.play();
 updateScore();
 
 function handleKeyUp(event){
@@ -20,12 +23,12 @@ function jump(){
     isJumping = true;
 
     let upInterval = setInterval( () =>{
-        if(position >= 150){
+        if(position >= 370){
             clearInterval(upInterval);
 
             //descendo
             let dowInterval = setInterval( () =>{
-                if(position > 0){
+                if(position > 110){
                 position -= 20;
 
                 dino.style.bottom = position + 'px';
@@ -36,6 +39,11 @@ function jump(){
             },20);
         }else{            
         //subindo
+        var divAudioJump = document.createElement('div');
+        divAudioJump.innerHTML = '<audio class="audioJump" src="jump.wav"></audio>';
+        document.body.appendChild(divAudioJump);
+        var audioJump = document.querySelector('.audioJump');
+        audioJump.play();
         position += 20;
 
         dino.style.bottom = position + 'px';
@@ -57,13 +65,24 @@ function createCactus(){
             clearInterval(leftInterval);
             background.removeChild(cactus);
             score += 100;
-        }else if(cactusPosition > 0 && cactusPosition < 60 && position < 60){
+        }else if(cactusPosition > 0 && cactusPosition < 159 && position < 210){
             //Game over
             clearInterval(leftInterval);
             document.body.innerHTML = '<h1 class = "game-over">Fim de Jogo</h1>';
+            document.body.className = 'bodyEnd';
             var textScore = document.createElement('div');
-            textScore.innerHTML = '<h2 class="finalScore">Final Score: '+score+'</h2>';
-            document.body.appendChild(textScore); 
+            textScore.innerHTML = '<h2 class="finalScore">Pontuação: '+score+'</h2>';
+            document.body.appendChild(textScore);
+            var divAudioOver = document.createElement('div');
+            divAudioOver.innerHTML = '<audio src="GameOver.wav"></audio>';
+            document.body.appendChild(divAudioOver);
+            var audioOver = document.querySelector('audio');
+            if(isSound == false){
+                audioOver.play();
+                isSound = true;
+            }else{
+                audioOver.pause();
+            }
         }else{
         cactusPosition -=10;
         cactus.style.left = cactusPosition +'px';
@@ -79,4 +98,4 @@ function updateScore(){
 }
 
 createCactus();
-document.addEventListener('keyup', handleKeyUp);
+document.addEventListener('keydown', handleKeyUp);

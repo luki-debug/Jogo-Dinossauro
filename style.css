@@ -1,23 +1,40 @@
-body{
-    background: #fafafa;
+body {
+    margin: 0;
+}
 
+.bodyEnd{
+    margin: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    text-align: center;
+    background: url(background.jpg) no-repeat bottom center scroll;
+    background-repeat: repeat-x;
+    animation: slideright 2200s infinite linear;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    background-size: contain;
+    -o-background-size: contain;
 }
 
 .dino{
-    width: 60px;
-    height: 60px;
-    background-image: url(dino2.gif);
+    width: 89px;
+    height: 77px;
+    background-image: url(dino.gif);
     transform: scaleX(-1);
     position: absolute;
-    bottom: 0;
+    bottom: 110px;
+    left: 70px;
 }
 
 .cactus{
     position: absolute;
-    width: 60px;
-    height: 60px;
-    bottom: 0;
-    background-image: url(cactus.png);
+    width: 253px;
+    height: 100px;
+    bottom: 110px;
+    transform: scaleX(-1);
+    background-image: url(cactus.gif);
 }
 
 .game-over{
@@ -56,9 +73,20 @@ body{
 .background{
     position: absolute;
     bottom: 0;
-    background-image: url(background.png);
+    background-image: url(corredor.png);
     background-repeat: repeat-x;
     animation: slideright 1100s infinite linear;
     width: 100%;
-    height: 200px;
+    height: 176px;
+    bottom: 0;
+}
+
+.backgroundTop{
+    position: absolute;
+    bottom: 0;
+    background-image: url(background.jpg);
+    background-repeat: repeat-x;
+    animation: slideright 2200s infinite linear;
+    width: 100%;
+    height: 100%;
 }
